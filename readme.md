@@ -39,3 +39,11 @@ also see docs/jQuery.html
 	higherAnimal.sleep(); // zzz
 	higherAnimal.breastFeeds(); // suckle
 
+	var lucy = new Dog('lucy');
+	lucy.name // lucy
+	lucy.alive; // true
+	lucy.smells; // badly
+	lucy.sleep(); // zzz
+	lucy.breastFeeds(); // suckle
+	lucy.bark(); // woof
+
