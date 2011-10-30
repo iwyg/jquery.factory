@@ -1,9 +1,41 @@
 # A Klass Factory 
 
-### tests
-
-see [qunit test](tests/index.html);
-
-
 ### Example usage
-see [documentation](docs/jQuery.html);
+also see docs/jQuery.html
+
+	var Animal = $.factory(null, function () {
+		  this.alive = true;
+	 }, {
+		 sleep: function () {
+		   if (this.alive) return 'zzz';
+	   }
+	 });
+
+
+	 var Mamel = $.factory(Animal, function (name) {
+		  this.name = name || 'mamel';
+	 }, {
+		 breastFeeds: function () {
+		   if (this.alive) return 'suckle';
+	   }
+	 });
+
+	 var Dog = $.factory(Mamel, function () {
+	   this.smells = 'badly';
+	 }, {
+		 bark: function () {
+		   if (this.alive) return 'woof';
+		  }
+	 });
+
+
+	var microbe = new Animal();
+	microbe.alive // true
+	microbe.sleep(); // zzz
+
+	var higherAnimal = new Mamel('cow');
+	higherAnimal.name // cow
+	higherAnimal.alive; // true
+	higherAnimal.sleep(); // zzz
+	higherAnimal.breastFeeds(); // suckle
+
