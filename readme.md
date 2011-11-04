@@ -47,3 +47,15 @@ also see docs/jQuery.html
 	lucy.breastFeeds(); // suckle
 	lucy.bark(); // woof
 
+
+	// MIXINS: 
+	
+	$.factory(null, contructor, {
+		foo: some.prototype.foo,
+		baz: some.prototype.baz,
+		run: another.prototype.run
+	});
+
+	// OR JUST PASS PROPERTY/METHOD NAMES AND THE CORRESPONDING OBJECT
+
+	$.factory(null, contructor, 'foo baz', some.prototype);

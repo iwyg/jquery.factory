@@ -58,4 +58,27 @@
 		equal(d.sleep, Animal.prototype.sleep, 'expect method sleep of Dog instance to be Animal.prototype.sleep');
 		equal(d.breastFeed, Mamel.prototype.breastFeed, 'expect method breastFeed of Dog instance to be Mamel.prototype.breastFeed');
 	});
+
+	var o = {
+		foo: function () {
+			return 'foo';
+		},
+		baz: function () {
+			return 'baz';
+		}
+	};
+	var mixinA = $.factory(null, function () {}, {
+		foo: o.foo,
+		baz: o.baz
+	});
+	var mixinB = $.factory(null, function () {}, 'foo baz', o);
+
+	test('$.factory mixin A', function () {
+		equal(o.foo, mixinA.prototype.foo);
+		equal(o.baz, mixinA.prototype.baz);
+	});
+	test('$.factory mixin B', function () {
+		equal(o.foo, mixinB.prototype.foo);
+		equal(o.baz, mixinB.prototype.baz);
+	});
 }(this.test, this.ok, this.equal));
