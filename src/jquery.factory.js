@@ -80,7 +80,8 @@
 	 */
 
 	jQuery.factory = (function () {
-		var O = Object.prototype;
+		var O = Object.prototype,
+		_hasProp = O.hasOwnProperty;
 		/*
 		function curry(parent) {
 			return function () {
@@ -95,9 +96,25 @@
 			};
 		}
 
-		return function (parent, constructor, methods) {
+		function mixin(strg, obj) {
+			var i = 0, l, method,
+			newObj = {};
+			strg = strg.split(' ');
+			l = strg.length;
+
+			for (; i < l; i++) {
+				method = strg[i];
+				if (_hasProp.call(obj, method)) {
+					newObj[method] = obj[method];
+				}
+			}
+			return newObj;
+		}
+
+		return function (parent, constructor, methods, obj) {
 			var prototype = objectCreate(parent && parent.prototype || O),
 			__super;
+			methods = typeof methods !== 'string' ? methods : mixin(methods, obj);
 			$.extend(prototype, methods);
 			prototype.constructor = init(constructor, __super = parent ? parent.prototype.constructor : prototype.constructor);
 			prototype.__super = __super;
