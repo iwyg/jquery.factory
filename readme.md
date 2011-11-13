@@ -1,7 +1,7 @@
 # A Klass Factory 
 
 ### Example usage
-also see docs/jQuery.html
+also see docs/jquery.factory.html
 
 	var Animal = $.factory(null, function () {
 		  this.alive = true;
