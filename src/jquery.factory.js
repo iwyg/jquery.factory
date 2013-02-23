@@ -1,14 +1,19 @@
-//## A Klass Constructor Factory
-// jquery.factory.js 1.0.2
-// © 2011 Thomas Appel, (http://thomas-appel.com)
-// jquery.factory.js is dual licensed under the
-// [MIT](http://dev.thomas-appel.com/licenses/mit.txt) and
-// [GPL](http://dev.thomas-appel.com/licenses/gpl.txt) license.
+/**
+ * A Klass Constructor Factory
+ *
+ * jquery.factory.js 1.0.2
+ *
+ * © 2011 Thomas Appel <http://thomas-appel.com>
+ *
+ * jquery.factory.js is dual licensed under the
+ * MIT <http://dev.thomas-appel.com/licenses/mit.txt> and
+ * GPL <http://dev.thomas-appel.com/licenses/gpl.txt> license.
+ *
+ */
 
 (function (root, undefined) {
-
+	'use strict';
 	var jQuery, $,
-
 	// creates an empty object. See [factory.createObject](#section-6)
 	objectCreate = (function () {
 		if (typeof Object.create === 'undefined') {
@@ -26,7 +31,7 @@
 	}());
 
 	// Make sure this plays nicely if jquery is loaded via AMD
-	jQuery = $ = (typeof require === 'function' && (require('jquery').$ || require('jquery'))) || root.jQuery;
+	jQuery = $ = ((typeof require === 'function' && require.amd) && (require('jquery').$ || require('jquery'))) || root.jQuery;
 
 	// ### The Klass Constructor
 	// - namespace: jQuery
@@ -36,9 +41,9 @@
 		var O = Object.prototype,
 		_hasProp = O.hasOwnProperty;
 
-		function init(constr, __super) {
+		function init(constr, __super__) {
 			return function () {
-				__super.apply(this, arguments);
+				__super__.apply(this, arguments);
 				constr.apply(this, arguments);
 			};
 		}
@@ -70,11 +75,11 @@
 
 		return function (parent, constructor, methods, obj) {
 			var prototype = objectCreate(parent && parent.prototype || O),
-			__super;
+			__super__;
 			methods = typeof methods !== 'string' ? methods : mixin(methods, obj);
 			$.extend(prototype, methods);
-			prototype.constructor = init(constructor, __super = parent ? parent.prototype.constructor : prototype.constructor);
-			prototype.__super = __super;
+			prototype.constructor = init(constructor, __super__ = parent ? parent.prototype.constructor : prototype.constructor);
+			prototype.__super__ = __super__;
 			constructor = prototype.constructor;
 			constructor.prototype = prototype;
 			return constructor;
@@ -89,7 +94,7 @@
 	// - parameters:
 	//		- obj: (type: Object). obj will be added to the Object’s prototype chain
 	//
-	jQuery.factory.createObject = objectCreate;
+	jQuery.create = objectCreate;
 
 	// -----------------------------------------------------------------------------
 	//
