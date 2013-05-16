@@ -1,2 +1,3 @@
 .DS_*
 *.un~
+node_modules/

@@ -1,0 +1,24 @@
+{
+  "name": "jquery.factory",
+  "license":"MIT",
+  "version": "0.1.1",
+  "description": "Minimal, light weight KlassFactory on top of jQuery.",
+  "author":"Thomas Appel <mail@thomas-appel.com>",
+  "contributors": [
+    {
+      "name": "Thomas Appel",
+      "email": "mail@thomas-appel.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/iwyg/jquery.factory.git"
+  },
+  "main": "./src/jquery.factory",
+  "dependencies": {
+    "jquery": "*"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}
