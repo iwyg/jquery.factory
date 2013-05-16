@@ -108,13 +108,10 @@
     exports = {
         Factory: Factory,
     };
-    if (typeof global.define === 'function') {
-        global.define('jquery.factory', ['jquery'], function ($) {
-            $.Factory = $.extend($, exports);
-        });
-    } else if (typeof module !== undefined) {
+
+    if (typeof module !== 'undefined') {
         module.exports = exports;
     } else {
-        $.Factory = $.extend($, exports);
+        $.extend($, exports);
     }
 }(this));
