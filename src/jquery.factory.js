@@ -32,7 +32,7 @@
     }());
 
     // Make sure this plays nicely if jquery is loaded via AMD
-    jQuery = $ = (typeof require !== 'undefined' || (global.define && global.define.amd)) ? require('jQuery') : global.jQuery;
+    jQuery = $ = (typeof require !== 'undefined' || (global.define && global.define.amd)) ? require('jquery') : global.jQuery;
 
     // ### The Klass Constructor
     // - namespace: jQuery
